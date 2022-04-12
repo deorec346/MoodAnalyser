@@ -6,47 +6,41 @@ namespace MSTestForMoodAnalyzer
     [TestClass]
     public class UnitTest1
     {
+        //Arrangement
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer(); 
 
         [TestMethod]
-        [TestCategory("Customexception")]
-        public void GivenNullShouldReturnCustomNullException()
+        public void CheckMoodHappy()
         {
-            //AAA Methology
-
-            //Arrange
-            string excepted = "Message should not be null";
-            MoodAnalyzer moodAnalyser = new MoodAnalyzer(null);
-            try
-            {
-                //ACT
-                string actual = moodAnalyser.AnalyzeMood();
-            }
-            catch (CustomMoodAnalyzerException ex)
-            {
-                //ASSERT
-                Assert.AreEqual(excepted, ex.Message);
-            }
+            //Action
+            string res = moodAnalyzer.CheckMood("Rishabh is Happy for his new laptop");
+            //Assert
+            Assert.AreEqual("happy", res);
         }
-
         [TestMethod]
-        [TestCategory("Customexception")]
-        public void GivenEmptyShouldReturnCustomEmptyException()
+        public void CheckMoodSad()
         {
-            //AAA Methology
-
-            //Arrange
-            string excepted = "Message should not be empty";
-            MoodAnalyzer moodAnalyser = new MoodAnalyzer(string.Empty);
+            //Action
+            string res = moodAnalyzer.CheckMood("Rishabh is Sad after getting bad marks");
+            //Assert
+            Assert.AreEqual("sad", res);
+        }
+        [TestMethod]
+        public void CheckNullException()
+        {
             try
             {
-                //ACT
-                string actual = moodAnalyser.AnalyzeMood();
+                //Action
+                string res = moodAnalyzer.CheckMood(null);
             }
-            catch (CustomMoodAnalyzerException ex)
+            catch(CustomMoodAnalyzerException mEx)
             {
-                //ASSERT
-                Assert.AreEqual(excepted, ex.Message);
+                //Assert
+                Assert.AreEqual(ExceptionType.NULL_VALUE, mEx.extype);
+                Assert.AreEqual("message is null", mEx.Message);
+
             }
+
         }
 
     }

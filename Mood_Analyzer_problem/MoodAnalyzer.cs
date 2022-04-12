@@ -1,41 +1,39 @@
 ﻿using System;
 namespace Mood_Analyzer_problem
 {
+    public enum  Mood
+    {
+        Happy,
+        sad
+    }
+
     public class MoodAnalyzer
     {
-        public string message;
-        public MoodAnalyzer(string message)
+        public string CheckMood(string msg)
         {
-            this.message = message;
-        }
-
-        public string AnalyzeMood()
-        {
-            try
+            //msg : Rishabh is Happy for his new laptop
+            //msg : Rishabh is Sad after getting bad marks
+            if (msg == null)
             {
-                if (message.ToLower().Equals(string.Empty))
-                {
-                    throw new CustomMoodAnalyzerException(CustomMoodAnalyzerException.ExceptionType.EMPTY_TYPE_EXCEPTION, "Message should not be empty");
-                }
-                else if (message.ToLower().Contains("sad"))
-                {
-                    return "sad";
-                }
-                else
-                {
-                    return "happy";
-                }
-            }
-            catch (NullReferenceException)
-            {
-                throw new CustomMoodAnalyzerException(CustomMoodAnalyzerException.ExceptionType.INVALID_MOOD_EXCEPTION, "Message should not be null");
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
+                throw new CustomMoodAnalyzerException("message is null", ExceptionType.NULL_VALUE);
             }
 
-        }
-
+            if (msg.Contains("happy" , StringComparison.OrdinalIgnoreCase))
+            {
+                return "happy";
+            }
+            else if(msg.Contains("sad", StringComparison.OrdinalIgnoreCase))
+            {
+                return "sad";
+            }
+            else if(msg.Contains("null", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Happy";
+            }
+            else
+            {
+                return null;
+            }
+        }  
     }
 }
