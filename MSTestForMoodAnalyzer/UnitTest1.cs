@@ -42,6 +42,23 @@ namespace MSTestForMoodAnalyzer
             }
 
         }
+        [TestMethod]
+        public void CheckEmptyException()
+        {
+            try
+            {
+                //Action
+                string res = moodAnalyzer.CheckMood("");
+            }
+            catch (CustomMoodAnalyzerException mEx)
+            {
+                //Assert
+                Assert.AreEqual(ExceptionType.EMPTY_TYPE, mEx.extype);
+                Assert.AreEqual("provided message is empty", mEx.Message);
+
+            }
+
+        }
 
     }
 }
