@@ -4,7 +4,7 @@ namespace Mood_Analyzer_problem
     public enum  Mood
     {
         Happy,
-        sad
+        sad,
     }
 
     public class MoodAnalyzer
