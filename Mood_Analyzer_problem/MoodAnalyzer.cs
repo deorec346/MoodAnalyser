@@ -1,26 +1,32 @@
 ﻿using System;
 namespace Mood_Analyzer_problem
 {
-    public enum  Mood
-    {
-        Happy,
-        sad
-    }
-
     public class MoodAnalyzer
     {
-        public string CheckMood(string msg)
+        public string message;
+        public MoodAnalyzer(string message)
         {
-            //msg : Rishabh is Happy for his new laptop
-            //msg : Rishabh is Sad after getting bad marks
-            if (msg.Contains("happy" , StringComparison.OrdinalIgnoreCase))
+            this.message = message;
+        }
+
+        public string AnalyzeMood()
+        {
+            try
+            {
+                if (message.ToLower().Contains("sad"))
+                {
+                    return "sad";
+                }
+                else
+                {
+                    return "happy";
+                }
+            }
+            catch (NullReferenceException)
             {
                 return "happy";
             }
-            else
-            {
-                return "sad";
-            }
+
         }
     }
 

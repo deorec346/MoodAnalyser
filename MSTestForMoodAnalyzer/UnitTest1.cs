@@ -4,26 +4,23 @@ using Mood_Analyzer_problem;
 namespace MSTestForMoodAnalyzer
 {
     [TestClass]
-    public class UnitTest1
+    public class MSTestForMoodAnalyzer
     {
-        //Arrangement
-        MoodAnalyzer moodAnalyzer = new MoodAnalyzer(); 
+        [TestMethod]
+        [TestCategory("negativescenario")]
+        public void GivenNullShouldReturnHappy()
+        {
+            //AAA Methology
 
-        [TestMethod]
-        public void CheckMoodHappy()
-        {
-            //Action
-            string res = moodAnalyzer.CheckMood("Rishabh is Happy for his new laptop");
-            //Assert
-            Assert.AreEqual("happy", res);
-        }
-        [TestMethod]
-        public void CheckMoodSad()
-        {
-            //Action
-            string res = moodAnalyzer.CheckMood("Rishabh is Sad after getting bad marks");
-            //Assert
-            Assert.AreEqual("sad", res);
+            //Arrange
+            string excepted = "happy";
+            MoodAnalyzer moodAnalyser = new MoodAnalyzer(null);
+
+            //ACT
+            string actual = moodAnalyser.AnalyzeMood();
+
+            //ASSERT
+            Assert.AreEqual(excepted, actual);
         }
     }
 }
