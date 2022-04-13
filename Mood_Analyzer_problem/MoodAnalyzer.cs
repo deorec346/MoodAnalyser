@@ -9,6 +9,17 @@ namespace Mood_Analyzer_problem
 
     public class MoodAnalyzer
     {
+        public string message;
+
+        public MoodAnalyzer()
+        {
+            this.message = "";
+        }
+
+        public MoodAnalyzer(string msg)
+        {
+            this.message = msg; 
+        }
         public string CheckMood(string msg)
         {
             //msg : Rishabh is Happy for his new laptop
