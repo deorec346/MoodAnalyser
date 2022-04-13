@@ -32,5 +32,13 @@ namespace Mood_Analyzer_problem
             var myObj = Activator.CreateInstance(mycon.DeclaringType,msg);
             return myObj;
         }
+
+        public string InvokeMood(string msg)
+        {
+            var myObj = GetObjectByParameterizedConstructor(msg);
+            MethodInfo myMethod = type.GetMethod("CheckMoodTwo");
+            object res = myMethod.Invoke(myObj, new object[0]);
+            return res.ToString();
+        }
     }
 }
