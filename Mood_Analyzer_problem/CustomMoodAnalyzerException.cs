@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoodAnalyzerProblem
+namespace Mood_Analyzer_problem
 {
     public class CustomMoodAnalyzerException : Exception // Exception:Represent error that occur during application Execution
     {
