@@ -1,70 +1,56 @@
 ﻿using System;
-namespace Mood_Analyzer_problem
-{
-    public enum  Mood
-    {
-        Happy,
-        sad,
-    }
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace MoodAnalyzerProblem
+{
     public class MoodAnalyzer
     {
         public string message;
-
         public MoodAnalyzer()
         {
-            this.message = "";
+
         }
 
-        public MoodAnalyzer(string msg)
+        /// Parameterised Constructor.
+        public MoodAnalyzer(string message)
         {
-            this.message = msg; 
+            this.message = message;
         }
-        public string CheckMood(string msg)
+
+        ///UC1:-Analyse Happy And Sad Mood
+        ///if messege Contain Sad then return Sad
+        ///if message contain Happy then return Happy
+
+        public string AnalyzeMood()
         {
-            message = msg;
-            //msg : Rishabh is Happy for his new laptop
-            //msg : Rishabh is Sad after getting bad marks
-            if (message == null)
+            try // Block of Code to be tested ,for error while it is being executed
             {
-                throw new CustomMoodAnalyzerException("message is null", ExceptionType.NULL_VALUE);
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new CustomMoodAnalyzerException(CustomMoodAnalyzerException.ExceptionType.EMPTY_MESSAGE, "Mood should not be Empty");
+                }
+                else if (this.message.Contains("sad")) //Contains():- This method is used to check whether the substring occurs within a given string or not.
+                {
+                    return "sad";
+                }
+                else
+                {
+                    return "happy";
+                }
             }
-            else if (message.Length < 1)
+            catch (NullReferenceException)// Block of code to be Executed if an error in the block
             {
-                throw new CustomMoodAnalyzerException("provided message is empty", ExceptionType.EMPTY_TYPE);
+                throw new CustomMoodAnalyzerException(CustomMoodAnalyzerException.ExceptionType.NULL_MESSAGE, "Mood should not be null");
+            }
+            catch (CustomMoodAnalyzerException exception)
+            {
+                return exception.Message;
             }
 
-            if (message.Contains("happy" , StringComparison.OrdinalIgnoreCase))
-            {
-                return "happy";
-            }
-             if(message.Contains("sad", StringComparison.OrdinalIgnoreCase))
-            {
-                return "sad";
-            }
-            return null;
         }
 
-        public string CheckMoodTwo()
-        {
-            if (message == null)
-            {
-                throw new CustomMoodAnalyzerException("message is null", ExceptionType.NULL_VALUE);
-            }
-            else if (message.Length < 1)
-            {
-                throw new CustomMoodAnalyzerException("provided message is empty", ExceptionType.EMPTY_TYPE);
-            }
-
-            if (message.Contains("happy", StringComparison.OrdinalIgnoreCase))
-            {
-                return "happy";
-            }
-            if (message.Contains("sad", StringComparison.OrdinalIgnoreCase))
-            {
-                return "sad";
-            }
-            return null;
-        }
     }
 }
